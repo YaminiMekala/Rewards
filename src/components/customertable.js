@@ -1,4 +1,4 @@
-import React,{Component} from "react";
+import React from "react";
 import Table from 'react-bootstrap/Table';
 
 const caliculatePoints = (amount) => {
@@ -12,43 +12,45 @@ const caliculatePoints = (amount) => {
   }
   return points;
 }
-const totalEarnedPoints = (transactions) => {
+export const totalEarnedPoints = (transactions) => {
   let points = 0;
   transactions.forEach(element => {
     points += caliculatePoints(element.amount)
   });
   return points;
 }
-export class CustomerTable extends Component{
-	render(){
-		const { data } = this.props;
+const CustomerTable = ({data}) => {
   return (
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>customerId</th>
-          <th>Full Name</th>
-          <th>June</th>
-          <th>July</th>
-          <th>August</th>
-          <th>Total Points</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.length &&
-          data.map((item) => (
-            <tr key={item.customerId}>
-              <td>{item.customerId}</td>
-              <td>{item.fullName}</td>
-              {item.transactions.map((item) => (
-                  <td>{item.amount}</td>
-              ))}
-              <td>{totalEarnedPoints(item.transactions)}</td>
+    <>
+      <div data-testid="customer-table">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>customerId</th>
+              <th>Full Name</th>
+              <th>June</th>
+              <th>July</th>
+              <th>August</th>
+              <th>Total Points</th>
             </tr>
-          ))}
-      </tbody>
-    </Table>
-  );
-}
+          </thead>
+          <tbody>
+            {data?.length &&
+              data?.map((item) => (
+                <tr key={item.customerId}>
+                  <td>{item.customerId}</td>
+                  <td>{item.fullName}</td>
+                  {item.transactions.map((item) => (
+                    <td>{item.amount}</td>
+                  ))}
+                  <td>{totalEarnedPoints(item.transactions)}</td>
+                </tr>
+              ))}
+          </tbody>
+        </Table>
+      </div>
+    </>
+  )
 }
 
+export default CustomerTable;

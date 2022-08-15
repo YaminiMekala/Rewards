@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import "./App.css";
-import { CustomerTable } from "./components/customertable";
+import CustomerTable from "./components/Customertable";
 import fetch from "./api/dataservice";
 
 function App() {
