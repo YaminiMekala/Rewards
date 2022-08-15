@@ -4,35 +4,10 @@
 import React from "react";
 import { unmountComponentAtNode } from "react-dom";
 import { render } from '@testing-library/react';
+import { data } from '../api/data';
 import CustomerTable, { totalEarnedPoints } from './CustomerTable';
 
 let container = null;
-const data = [{
-    customerId: 1,
-    fullName: "Person A",
-    transactions: [
-        {
-            transactionDate: "06-01-2022",
-            amount: 120,
-            result: 90,
-        },
-        {
-            transactionDate: "07-01-2022",
-            amount: 150,
-            result: 150,
-        },
-        {
-            transactionDate: "08-01-2022",
-            amount: 50,
-            result: 0,
-        },
-        {
-            transactionDate: "08-01-2022",
-            amount: 100,
-            result: 50,
-        },
-    ],
-}]
 beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container);
@@ -60,5 +35,5 @@ it("Check if customer name renders correct", () => {
 it("check if the rewards points are correct", () => {
     render(<CustomerTable data={{ data }} />, container)
     let points = totalEarnedPoints(data[0].transactions);
-    expect(points).toEqual(290);
+    expect(points).toEqual(240);
 })
