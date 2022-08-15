@@ -38,10 +38,10 @@ const CustomerTable = ({data}) => {
             {data?.length &&
               data?.map((item) => (
                 <tr key={item.customerId}>
-                  <td>{item.customerId}</td>
-                  <td>{item.fullName}</td>
+                  <td key={item.customerId}>{item.customerId}</td>
+                  <td key={item.fullName}>{item.fullName}</td>
                   {item.transactions.map((item) => (
-                    <td>{item.amount}</td>
+                    <td key={item.amount}>{item.amount}</td>
                   ))}
                   <td>{totalEarnedPoints(item.transactions)}</td>
                 </tr>
